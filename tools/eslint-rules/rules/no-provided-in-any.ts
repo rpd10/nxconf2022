@@ -45,7 +45,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
             decorator,
             PROVIDED_IN
           );
-          if (ASTUtils.isLiteral(value) && value.value === 'any') {
+          if (value && ASTUtils.isLiteral(value) && value.value === 'any') {
             context.report({
               node: value,
               messageId: 'noProvidedInAny',
@@ -56,25 +56,3 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
     };
   },
 });
-
-/**
- * export default function (context) {
-  return {
-    ClassDeclaration(node) {
-      if (
-        node.decorators &&
-        node.decorators.some(
-          (decorator) =>
-            decorator.expression.callee.name === "Injectable" && decorator.expression.arguments.some((arg) => arg.properties.some((prop) => prop.key.name === "providedIn" && prop.value.type === "Literal" && prop.value.value === "any"))
-        )
-      ) {
-        context.report({
-          node,
-          message: "No providedIn: any"
-        });
-      }
-    }
-  };
-}
-
- */
