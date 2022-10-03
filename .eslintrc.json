@@ -6,6 +6,7 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
+        "@nrwl/nx/workspace/no-provided-in-any": "error",
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {
