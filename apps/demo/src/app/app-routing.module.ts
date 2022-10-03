@@ -10,6 +10,14 @@ const routes: Route[] = [
       ),
   },
   {
+    path: '',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('@nxconf2022/demo/feature/landing-page').then(
+        (m) => m.DemoFeatureLandingPageModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'login',
   },
