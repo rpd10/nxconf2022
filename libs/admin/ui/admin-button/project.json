@@ -1,0 +1,43 @@
+{
+  "name": "admin-ui-admin-button",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/admin/ui/admin-button/src",
+  "prefix": "nxconf2022",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/admin/ui/admin-button"],
+      "options": {
+        "project": "libs/admin/ui/admin-button/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/admin/ui/admin-button/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/admin/ui/admin-button/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/admin/ui/admin-button"],
+      "options": {
+        "jestConfig": "libs/admin/ui/admin-button/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/admin/ui/admin-button/**/*.ts",
+          "libs/admin/ui/admin-button/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:admin", "type:ui"]
+}

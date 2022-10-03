@@ -1,0 +1,43 @@
+{
+  "name": "shared-ui-button",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui/button/src",
+  "prefix": "nxconf2022",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/shared/ui/button"],
+      "options": {
+        "project": "libs/shared/ui/button/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/shared/ui/button/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/shared/ui/button/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/ui/button"],
+      "options": {
+        "jestConfig": "libs/shared/ui/button/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/ui/button/**/*.ts",
+          "libs/shared/ui/button/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:ui", "scope:shared"]
+}

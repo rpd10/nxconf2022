@@ -1,0 +1,43 @@
+{
+  "name": "admin-feature-user-management",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/admin/feature/user-management/src",
+  "prefix": "nxconf2022",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/admin/feature/user-management"],
+      "options": {
+        "project": "libs/admin/feature/user-management/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/admin/feature/user-management/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/admin/feature/user-management/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/admin/feature/user-management"],
+      "options": {
+        "jestConfig": "libs/admin/feature/user-management/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/admin/feature/user-management/**/*.ts",
+          "libs/admin/feature/user-management/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:admin", "type:feature"]
+}

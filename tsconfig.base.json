@@ -14,7 +14,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@nxconf2022/admin/feature/user-management": [
+        "libs/admin/feature/user-management/src/index.ts"
+      ],
+      "@nxconf2022/admin/ui/admin-button": [
+        "libs/admin/ui/admin-button/src/index.ts"
+      ],
+      "@nxconf2022/shared/feature/login": [
+        "libs/shared/feature/login/src/index.ts"
+      ],
+      "@nxconf2022/shared/ui/button": ["libs/shared/ui/button/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

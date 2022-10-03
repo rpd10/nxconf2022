@@ -22,11 +22,15 @@
               },
               {
                 "sourceTag": "scope:demo",
-                "onlyDependOnLibsWithTags": ["scope:demo"]
+                "onlyDependOnLibsWithTags": ["scope:demo", "scope:shared"]
               },
               {
                 "sourceTag": "scope:admin",
-                "onlyDependOnLibsWithTags": ["scope:admin"]
+                "onlyDependOnLibsWithTags": ["scope:admin", "scope:shared"]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
               },
               {
                 "sourceTag": "*",
