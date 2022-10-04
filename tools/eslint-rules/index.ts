@@ -1,4 +1,8 @@
 import {
+  RULE_NAME as noStandaloneComponentsName,
+  rule as noStandaloneComponents,
+} from './rules/no-standalone-components';
+import {
   RULE_NAME as noProvidedInAnyName,
   rule as noProvidedInAny,
 } from './rules/no-provided-in-any';
@@ -27,5 +31,8 @@ module.exports = {
    *  [myCustomRuleName]: myCustomRule
    * }
    */
-  rules: { [noProvidedInAnyName]: noProvidedInAny },
+  rules: {
+    [noProvidedInAnyName]: noProvidedInAny,
+    [noStandaloneComponentsName]: noStandaloneComponents,
+  },
 };

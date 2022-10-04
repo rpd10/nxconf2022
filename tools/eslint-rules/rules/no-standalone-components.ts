@@ -17,22 +17,20 @@
 import { ASTUtils } from '@angular-eslint/utils';
 import { ESLintUtils, TSESTree } from '@typescript-eslint/utils';
 
-// NOTE: The rule will be available in ESLint configs as "@nrwl/nx/workspace/no-provided-in-any"
-export const RULE_NAME = 'no-provided-in-any';
-
-const PROVIDED_IN = 'providedIn';
+// NOTE: The rule will be available in ESLint configs as "@nrwl/nx/workspace/no-standalone-components"
+export const RULE_NAME = 'no-standalone-components';
 
 export const rule = ESLintUtils.RuleCreator(() => __filename)({
   name: RULE_NAME,
   meta: {
     type: 'problem',
     docs: {
-      description: `Using providedIn:any is almost never correct and should be used sparingly.`,
+      description: `Using standalone Angular components is not yet allowed, until we have collectively decided on the best architecture for their usage.`,
       recommended: 'error',
     },
     schema: [],
     messages: {
-      noProvidedInAny: `Using \`${PROVIDED_IN}\`: any is not allowed.`,
+      noStandaloneComponents: `Using standalone components is not allowed (yet).`,
     },
   },
   defaultOptions: [],
@@ -42,12 +40,12 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
         for (const decorator of node.decorators) {
           const value = ASTUtils.getDecoratorPropertyValue(
             decorator,
-            PROVIDED_IN
+            'standalone'
           );
-          if (value && ASTUtils.isLiteral(value) && value.value === 'any') {
+          if (value && ASTUtils.isLiteral(value) && value.value === true) {
             context.report({
-              node: value,
-              messageId: 'noProvidedInAny',
+              node: ASTUtils.getDecoratorProperty(decorator, 'standalone'),
+              messageId: 'noStandaloneComponents',
             });
           }
         }
