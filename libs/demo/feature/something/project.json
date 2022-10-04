@@ -1,0 +1,43 @@
+{
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "name": "demo-feature-something",
+  "projectType": "library",
+  "sourceRoot": "libs/demo/feature/something/src",
+  "prefix": "nxconf2022",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/demo/feature/something"],
+      "options": {
+        "project": "libs/demo/feature/something/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/demo/feature/something/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/demo/feature/something/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/demo/feature/something"],
+      "options": {
+        "jestConfig": "libs/demo/feature/something/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/demo/feature/something/**/*.ts",
+          "libs/demo/feature/something/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:demo", "type:feature"]
+}
