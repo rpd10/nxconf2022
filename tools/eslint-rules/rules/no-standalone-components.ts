@@ -48,7 +48,7 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
             property.value.value === true
           ) {
             context.report({
-              node: ASTUtils.getDecoratorProperty(decorator, 'standalone'),
+              node: property,
               messageId: 'noStandaloneComponents',
             });
           }
