@@ -38,11 +38,15 @@ export const rule = ESLintUtils.RuleCreator(() => __filename)({
     return {
       ClassDeclaration: function (node: TSESTree.ClassDeclaration) {
         for (const decorator of node.decorators) {
-          const value = ASTUtils.getDecoratorPropertyValue(
+          const property = ASTUtils.getDecoratorProperty(
             decorator,
             'standalone'
           );
-          if (value && ASTUtils.isLiteral(value) && value.value === true) {
+          if (
+            property &&
+            ASTUtils.isLiteral(property.value) &&
+            property.value.value === true
+          ) {
             context.report({
               node: ASTUtils.getDecoratorProperty(decorator, 'standalone'),
               messageId: 'noStandaloneComponents',
