@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DemoFeatureSomethingComponent } from './demo-features-something.component';
+import { DemoFeatureSomethingComponent } from './demo-feature-something.component';
 
 describe('DemoFeatureSomethingComponent', () => {
   let component: DemoFeatureSomethingComponent;

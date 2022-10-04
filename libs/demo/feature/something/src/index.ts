@@ -1,3 +1,1 @@
-export * from './lib/demo-features-something/demo-features-something.component';
-
-export * from './lib/routes';
+export * from './lib/demo-feature-something/demo-feature-something.component';
