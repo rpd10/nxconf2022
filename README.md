@@ -1,105 +1,42 @@
+# Nx Conf 2022 - Workspace Guardrails
 
+[Google Slides](https://docs.google.com/presentation/d/1_AF7LSjCw-4Ikstap_BYv22u6CTjuyw_tY6SuRLMPfI/edit?usp=sharing)
 
-# Nxconf2022
+This repo contains all of the configuration for the examples shown in the presentation above.
 
-This project was generated using [Nx](https://nx.dev).
+Click the Actions tab above to check out the GitHub Actions CI workflows, also linked below.
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## workspace-lint
 
-🔎 **Smart, Fast and Extensible Build System**
+https://nx.dev/nx/workspace-lint
 
-## Quick Start & Documentation
+The `demo/workspace-lint` branch and [this pull request](https://github.com/rpd10/nxconf2022/pull/2) show how you can prevent unexpected behavior by running `npx nx workspace-lint` in CI.
 
-[Nx Documentation](https://nx.dev/getting-started/intro)
+See the following files for where we're applying that check:
 
-[Mental model is a good starting point for those who like to understand things theoretically first.](https://nx.dev/concepts/mental-model)
+- [Husky pre-commit hook](https://github.com/rpd10/nxconf2022/blob/main/.husky/pre-commit)
+- [GitHub Actions](https://github.com/rpd10/nxconf2022/blob/main/.github/workflows/ci.yml#L19)
 
-[Interactive Tutorial](https://nx.dev/getting-started/angular-tutorial)
+## @nrwl/nx/enforce-module-boundaries
 
-## Adding capabilities to your workspace
+https://nx.dev/core-features/enforce-project-boundaries
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+The `demo/enforce-module-boundaries` branch and [this pull request](https://github.com/rpd10/nxconf2022/pull/1) show how we can use these ESLint rules to enforce structure on our dependency graph.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+- [ESLint config](https://github.com/rpd10/nxconf2022/blob/main/.eslintrc.json#L11)
+- [Example tags for a library](https://github.com/rpd10/nxconf2022/blob/main/libs/shared/ui/button/project.json#L42)
 
-Below are our core plugins:
+## Workspace Lint Rules
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+https://nx.dev/packages/linter/generators/workspace-rule
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+The `demo/workspace-eslint` branch and [this pull request](https://github.com/rpd10/nxconf2022/pull/3) show how we can fail a PR if the code doesn't meet our custom ESLint rule.
 
-## Generate an application
+- [ESLint config](https://github.com/rpd10/nxconf2022/blob/main/.eslintrc.json#L9)
+- [Workspace Lint Rule barrel file](https://github.com/rpd10/nxconf2022/blob/main/tools/eslint-rules/index.ts)
+- [Example lint rule - no-provided-in-any](https://github.com/rpd10/nxconf2022/blob/main/tools/eslint-rules/rules/no-provided-in-any.ts)
+- [Example unit tests](https://github.com/rpd10/nxconf2022/blob/main/tools/eslint-rules/rules/no-provided-in-any.spec.ts)
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+## Code Owners
 
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@nxconf2022/mylib`.
-
-## Development server
-
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-
-
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+Though I didn't really touch on it in the presentation (and it's not setup in this demo repo), all of these checks are meaningless if engineers can easily sidestep them. To prevent that, we use GitHub's `CODEOWNERS` feature to apply a layer of protection to the Nx configuration files like the `eslintrc.json` and our CI configuration.
