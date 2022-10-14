@@ -1,11 +1,11 @@
 import {
-  RULE_NAME as noStandaloneComponentsName,
-  rule as noStandaloneComponents,
-} from './rules/no-standalone-components';
-import {
-  RULE_NAME as noProvidedInAnyName,
   rule as noProvidedInAny,
+  RULE_NAME as noProvidedInAnyName,
 } from './rules/no-provided-in-any';
+import {
+  rule as noStandaloneComponents,
+  RULE_NAME as noStandaloneComponentsName,
+} from './rules/no-standalone-components';
 /**
  * Import your custom workspace rules at the top of this file.
  *
